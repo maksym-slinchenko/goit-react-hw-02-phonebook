@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function Filtre({ value, onChangeFiter }) {
   return (
@@ -15,3 +16,8 @@ export default function Filtre({ value, onChangeFiter }) {
     </>
   );
 }
+
+Filtre.propTypes = {
+  value: PropTypes.string,
+  onChangeFiter: PropTypes.func,
+};

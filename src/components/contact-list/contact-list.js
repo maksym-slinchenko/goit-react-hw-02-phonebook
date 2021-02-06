@@ -1,11 +1,9 @@
 import React from 'react';
 import ContactItem from '../contact-item/contact-item';
 import { v4 as uuidv4 } from 'uuid';
+import PropTypes from 'prop-types';
 
-export default function ContactList({
-  contacts,
-  onRemove,
-}) {
+export default function ContactList({ contacts, onRemove }) {
   return (
     <>
       <ul>
@@ -21,3 +19,8 @@ export default function ContactList({
     </>
   );
 }
+
+ContactList.propTypes = {
+  contacts: PropTypes.array,
+  onRemove: PropTypes.func,
+};

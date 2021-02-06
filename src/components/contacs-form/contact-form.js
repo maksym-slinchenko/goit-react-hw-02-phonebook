@@ -17,24 +17,22 @@ export default class ContactForm extends Component {
   isFieldEmpty = name => {
     if (name === '') {
       alert(`All fields must be completed`);
-      return;
+      return true;
     }
   };
 
   // Добавление нового контатка в список
   handleAddContacts = e => {
     e.preventDefault();
-    if (this.state.name === '' || this.state.number === '') {
-      alert(`All fields must be completed`);
+    if (
+      this.isFieldEmpty(this.state.name) ||
+      this.isFieldEmpty(this.state.number)
+    ) {
       return;
     }
-    // this.isFieldEmpty(this.state.name);
-    // this.isFieldEmpty(this.state.number);
-    const inputName =
-      e.currentTarget.parentNode.firstElementChild.firstElementChild.value;
     const namesArray = this.props.contacts.map(c => c.name.toLowerCase());
-    if (namesArray.includes(inputName.toLowerCase())) {
-      const i = namesArray.indexOf(inputName.toLowerCase());
+    if (namesArray.includes(this.state.name.toLowerCase())) {
+      const i = namesArray.indexOf(this.state.name.toLowerCase());
       alert(`"${this.props.contacts[i].name}" is already in contacts`);
       return;
     }
@@ -59,7 +57,7 @@ export default class ContactForm extends Component {
             <input
               name="name"
               type="text"
-              value={this.state.value}
+              value={this.state.name}
               onChange={this.handleChange}
             />
           </label>
@@ -68,7 +66,7 @@ export default class ContactForm extends Component {
             <input
               name="number"
               type="tel"
-              value={this.state.value}
+              value={this.state.number}
               onChange={this.handleChange}
             />
           </label>
